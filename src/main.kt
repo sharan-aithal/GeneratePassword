@@ -3,7 +3,9 @@ import kotlin.random.Random
 fun main() {
     print("Enter length of password (Press Enter to use default): ")
     val input = readLine()
-    val p = if (input != "" && input != null) { Password(input.toInt()) } else Password()
+    val p = if (input != "" && input != null) {
+        Password(input.toInt())
+    } else Password()
     println("Your password is : ${p.generate()}")
 }
 

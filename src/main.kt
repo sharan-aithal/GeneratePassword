@@ -1,13 +1,14 @@
 import kotlin.random.Random
 
 fun main() {
-    val p = Password()
-    println(p.generate())
+    print("Enter length of password (Press Enter to use default): ")
+    val input = readLine()
+    val p = if (input != "" && input != null) { Password(input.toInt()) } else Password()
+    println("Your password is : ${p.generate()}")
 }
 
-class Password(var length: Int = 12) {
+class Password(var length: Int = 10) {
 
-    var minLength = 4
     private val SMALL_CHARS = "abcdefghijklmnopqrstuvwxyz"
     private val CAPS_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     private val NUMBERS = "0123456789"
@@ -16,8 +17,8 @@ class Password(var length: Int = 12) {
 
     fun generate(): String {
         val str = SMALL_CHARS + CAPS_CHARS + NUMBERS + SYMBOLS
-        val randomPass = getRandomChars(str, str.length)
-        return listToString(getRandomChars(listToString(randomPass), length))
+        val randomPass = getRandomChars(str, length)
+        return listToString(randomPass)
     }
 
     private fun getRandomChars(string: String, len: Int): MutableList<Char> {
